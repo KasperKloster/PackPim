@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            List () {
+                NavigationLink("Home", destination: HomeView())
+                NavigationLink("Products", destination: ProductRouter.createModule())
+            }
+            .navigationTitle("Menu")
+        } detail: {
+            Text("Select an option from the menu")
         }
-        .padding()
     }
 }
 
