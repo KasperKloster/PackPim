@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol IntegrationPresenterProtocol: AnyObject {
+    func loadIntegrations()
+    func navigateToAddNewIntegration()
+}

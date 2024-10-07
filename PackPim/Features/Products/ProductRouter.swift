@@ -13,6 +13,7 @@ class ProductRouter {
         let presenter = ProductPresenter()
         let interactor = ProductInteractor()
         presenter.interactor = interactor
+        
         let view = ProductView(presenter: presenter)
         return view
     }

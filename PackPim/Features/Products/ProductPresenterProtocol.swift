@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol ProductPresenterProtocol: AnyObject {
+protocol ProductPresenterProtocol {
+    var products: [Product] { get }
     func loadProducts()
 }

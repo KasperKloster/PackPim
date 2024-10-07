@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ProductView: View {
-    @ObservedObject var presenter: ProductPresenter
+    @ObservedObject var presenter: ProductPresenter // Concrete type so we can observe changes in @Published property
             
-    var body: some View {
+    var body: some View {        
         VStack {
             if presenter.products.isEmpty
             {
                 Text("No products available..")
             }
-            else
-            {
-                List(presenter.products) { product in
-                    Text(product.name)
+            else {
+                Table(presenter.products){
+                    TableColumn("SKU", value: \.sku)
+                    TableColumn("Name", value: \.name)
                 }
             }
         }

@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct CreateIntegrationRouter: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    CreateIntegrationRouter()
+class CreateIntegrationRouter {
+    static func createModule() -> some View {
+        let view = CreateIntegrationView()
+        return view
+    }    
 }

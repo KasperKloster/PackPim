@@ -13,6 +13,7 @@ struct ContentView: View {
             List () {
                 NavigationLink("Home", destination: HomeView())
                 NavigationLink("Products", destination: ProductRouter.createModule())
+                NavigationLink("Integrations", destination: IntegrationRouter.createModule())
             }
             .navigationTitle("Menu")
         } detail: {

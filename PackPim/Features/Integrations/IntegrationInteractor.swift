@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class IntegrationInteractor: IntegrationInteractorProtocol {
+    func fetchIntegrations() -> [Integration] {
+        return Integration.dummyData();
+    }        
+}

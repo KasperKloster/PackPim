@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct IntegrationView: View {
+    @ObservedObject var presenter: IntegrationPresenter
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Spacer()
+            Button("Add new Integration"){                
+            }.padding()
+        }
+        VStack {
+            if presenter.integrations.isEmpty {
+                Text("No Integrations..")
+            }
+            else {
+                List(presenter.integrations) { integration in
+                    Text(integration.name)
+                }
+            }
+        }
+        .navigationTitle("Integrations")
+        .onAppear
+        {
+            presenter.loadIntegrations()
+        }
+        
     }
 }
 
 #Preview {
-    IntegrationView()
+    let presenter = IntegrationPresenter()
+    presenter.interactor = IntegrationInteractor()
+    return IntegrationView(presenter: presenter)
 }
