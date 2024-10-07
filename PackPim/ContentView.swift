@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isProductsExpanded: Bool = true
+    @State private var isIntegrationsExpanded: Bool = true
+    
     var body: some View {
         NavigationSplitView {
-            List () {
+            List{
                 NavigationLink("Home", destination: HomeView())
-                NavigationLink("Products", destination: ProductRouter.createModule())
-                NavigationLink("Integrations", destination: IntegrationRouter.createModule())
-            }
-            .navigationTitle("Menu")
+                
+                DisclosureGroup("Products", isExpanded: $isProductsExpanded){
+                    NavigationLink("Products", destination: ProductRouter.createModule())
+                }
+                DisclosureGroup("Integrations", isExpanded: $isIntegrationsExpanded){
+                    NavigationLink("Integrations", destination: IntegrationRouter.createModule())
+                }
+            }            
         } detail: {
             Text("Select an option from the menu")
         }
