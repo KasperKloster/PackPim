@@ -6,11 +6,15 @@
 //
 
 import Testing
+@testable import PackPim
 
-struct TestProductEntity {
+@Suite("Suite: ProductEntity") struct TestProductEntity {
 
-    @Test func <#test function name#>() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test("Test: ProductEntity can be initialized") func setProductSkuAndName() async throws {
+        let sku = "123456789"
+        let name = "Test Product"
+        let product = Product(sku: sku, name: name)
+        #expect(product.sku == sku)
+        #expect(product.name == name)
     }
-
 }

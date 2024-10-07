@@ -10,7 +10,7 @@ import Foundation
 struct Product: Identifiable {
     let id = UUID()
     let sku: String
-    let name: String
+    let name: String    
     
     static func dummyData() -> [Product] {
         return [

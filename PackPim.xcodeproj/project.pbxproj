@@ -131,6 +131,7 @@
 				6E7653DD2CADCBF0007A4611 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				6E7653CC2CADCBEE007A4611 /* PackPim */,
 				6E7653DE2CADCBF0007A4611 /* PackPimTests */,
 			);
 			name = PackPimTests;
