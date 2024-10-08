@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol CreateIntegrationPresenterProtocol : AnyObject {
+    func loadPlatforms()
+}

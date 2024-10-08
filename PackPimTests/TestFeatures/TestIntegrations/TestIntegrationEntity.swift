@@ -6,11 +6,16 @@
 //
 
 import Testing
+@testable import PackPim
 
-struct TestIntegrationEntity {
+@Suite("Suite: TestIntegrationEntity") struct TestIntegrationEntity {
 
-    @Test func <#test function name#>() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test("Test: Set Integration Name") func setIntegrationName() {
+        let name = "Shopify"
+        let apiKey = "123456789"
+        let integration = Integration(name: name, apikey: apiKey)
+        #expect(integration.name == name)
+        #expect(integration.apikey == apiKey)
     }
 
 }

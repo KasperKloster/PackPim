@@ -21,6 +21,7 @@ struct ContentView: View {
                 }
                 DisclosureGroup("Integrations", isExpanded: $isIntegrationsExpanded){
                     NavigationLink("Integrations", destination: IntegrationRouter.createModule())
+                    NavigationLink("Add new integrattion", destination: CreateIntegrationRouter.createModule())
                 }
             }            
         } detail: {

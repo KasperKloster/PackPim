@@ -9,7 +9,10 @@ import SwiftUI
 
 class CreateIntegrationRouter {
     static func createModule() -> some View {
-        let view = CreateIntegrationView()
+        let presenter = CreateIntegrationPresenter()
+        let interactor = CreateIntegrationInteractor()
+        presenter.interactor = interactor
+        let view = CreateIntegrationView(presenter: presenter)
         return view
     }    
 }

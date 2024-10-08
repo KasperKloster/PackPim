@@ -7,10 +7,12 @@
 
 import Testing
 
-struct TestPlatformEntity {
+@Suite("TestPlatformEntity") struct TestPlatformEntity {
 
-    @Test func <#test function name#>() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test("Sets platform name") func setName() {
+        let name = "Shopify"
+        let platform = Platform(name: name)
+        #expect(platform.name == name)
     }
 
 }

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol CreateIntegrationInteractorProtocol: AnyObject {
+    func fetchPlatforms() -> [Platform]
+}

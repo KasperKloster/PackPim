@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Platform : Identifiable, Hashable{
+    let id = UUID()
+    let name: String
+}

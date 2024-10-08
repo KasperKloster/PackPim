@@ -10,7 +10,7 @@ import Testing
 
 @Suite("Suite: ProductEntity") struct TestProductEntity {
 
-    @Test("Test: ProductEntity can be initialized") func setProductSkuAndName() async throws {
+    @Test("Test: ProductEntity can be initialized") func setProductSkuAndName() {
         let sku = "123456789"
         let name = "Test Product"
         let product = Product(sku: sku, name: name)

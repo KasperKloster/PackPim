@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class CreateIntegrationInteractor : CreateIntegrationInteractorProtocol {
+    func fetchPlatforms() -> [Platform] {
+        return platformDataSourceDummyData();
+    }    
+}

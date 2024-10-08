@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        VStack{
-            Text("Welcome to the Home View!")
+        VStack(alignment: .leading, spacing: 20) {
+            customHeadLineText("Home")
         }
         .navigationTitle("Home")
     }

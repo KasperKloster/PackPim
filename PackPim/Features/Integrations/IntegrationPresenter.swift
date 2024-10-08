@@ -16,9 +16,5 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
         if let integrations = interactor?.fetchIntegrations() {
             self.integrations = integrations
         }
-    }
-    
-    func navigateToAddNewIntegration(){
-        
-    }
+    }    
 }

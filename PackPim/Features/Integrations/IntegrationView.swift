@@ -11,12 +11,9 @@ struct IntegrationView: View {
     @ObservedObject var presenter: IntegrationPresenter
     
     var body: some View {
-        HStack{
-            Spacer()
-            Button("Add new Integration"){                
-            }.padding()
-        }
-        VStack {
+        VStack(alignment: .leading, spacing: 20) {
+            customHeadLineText("Integrations")
+            
             if presenter.integrations.isEmpty {
                 Text("No Integrations..")
             }
