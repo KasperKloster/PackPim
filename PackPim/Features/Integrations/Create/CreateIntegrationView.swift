@@ -9,7 +9,9 @@ import SwiftUI
 
 struct CreateIntegrationView: View {
     @ObservedObject var presenter: CreateIntegrationPresenter
-    @State private var selectedPlatform: Platform? // Use State to track selected platform
+    // State to track selected platform
+    @State private var selectedPlatform: Platform? = nil
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 20) {
@@ -19,14 +21,17 @@ struct CreateIntegrationView: View {
             // Input fields and picker
             VStack(spacing: 20) {
                 TextField("Name", text: .constant(""))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())  // Make it more visually appealing
-                    .padding(.horizontal) // Padding on sides
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
                 
                 TextField("APIKey", text: .constant(""))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
                 Picker("Choose platform", selection: $selectedPlatform) {
+                    // Default option for no selection
+                    Text("Select platform").tag(nil as Platform?)
+                    // Each platform
                     ForEach(presenter.platforms) { platform in
                         Text(platform.name).tag(platform as Platform?)
                     }
@@ -44,13 +49,17 @@ struct CreateIntegrationView: View {
             }
             .padding(.horizontal)
             
-            Spacer()  // Pushes content upwards, keeps bottom area free
+            Spacer()
         }
         .navigationTitle("Create new integration")
         .onAppear {
-            presenter.loadPlatforms()
+            Task{
+                do {
+                    await presenter.loadPlatforms()
+                } 
+            }
+            
         }
-    
     }
 }
 

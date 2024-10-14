@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CreateIntegrationInteractorProtocol: AnyObject {
-    func fetchPlatforms() -> [Platform]
+    func fetchPlatforms() async throws -> [Platform]
 }

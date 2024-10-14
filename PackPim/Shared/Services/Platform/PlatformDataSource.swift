@@ -14,7 +14,7 @@ import Foundation
 
 func platformDataSourceDummyData() -> [Platform] {
     return [
-        Platform(name: "Shopify"),
-        Platform(name: "Magento"),
+        Platform(id : "1", name: "Shopify"),
+        Platform(id : "2", name: "Magento"),
     ]
 }

@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Platform : Identifiable, Hashable{
-    let id = UUID()
+struct Platform : Hashable, Decodable, Identifiable{
+    let id : String
+//    let id = UUID()
     let name: String
 }
+
+
+

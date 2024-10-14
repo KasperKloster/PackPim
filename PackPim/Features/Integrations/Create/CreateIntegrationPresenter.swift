@@ -13,9 +13,15 @@ class CreateIntegrationPresenter : CreateIntegrationPresenterProtocol, Observabl
     
     @Published var platforms : [Platform] = []
     
-    func loadPlatforms() {
-        if let platforms = interactor?.fetchPlatforms() {
-            self.platforms = platforms
+    func loadPlatforms() async {
+        do {
+            let fetchedPlatforms = try await interactor?.fetchPlatforms() ?? []
+            // Ensure updating happens on the main thread (Publishing changes from background threads is not allowed)
+            DispatchQueue.main.async {
+                self.platforms = fetchedPlatforms
+            }
+        } catch {
+            print("Failed to load platforms: \(error.localizedDescription)")
         }
-    }
+    }    
 }

@@ -28,6 +28,7 @@ struct ContentView: View {
             Text("Select an option from the menu")
         }
     }
+
 }
 
 #Preview {

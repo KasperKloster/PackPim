@@ -8,7 +8,8 @@
 import Foundation
 
 class CreateIntegrationInteractor : CreateIntegrationInteractorProtocol {
-    func fetchPlatforms() -> [Platform] {
-        return platformDataSourceDummyData();
-    }    
+    
+    func fetchPlatforms() async throws -> [Platform] {        
+        return try await PlatformManager.shared.getAllPlatforms()
+    }
 }

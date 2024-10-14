@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CreateIntegrationPresenterProtocol : AnyObject {
-    func loadPlatforms()
+    func loadPlatforms() async throws
 }
