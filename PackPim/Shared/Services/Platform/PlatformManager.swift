@@ -9,13 +9,21 @@
 import FirebaseFirestore
 // A Singleton
 // Final class: Cannot be inherited
-final class PlatformManager {
+final class PlatformManager : PlatformManagerProtocol {
     // Static: Only avaiable wihin the class.
     // Let: is created once, and used thorugh the entire app - It's a singleton (There can only be one instance during app lifetime)
     // And instance of the class, so it can be accessed.
     static let shared = PlatformManager()
     
-    private let platformCollection = Firestore.firestore().collection("platforms")
+    //private let platformCollection = Firestore.firestore().collection("platforms")
+    
+    // Inject Firestore so we can test using Mock
+    private let platformCollection: CollectionReference
+    // Default initiazlier using Firestore
+    init(platformCollection: CollectionReference = Firestore.firestore().collection("platforms")) {
+        self.platformCollection = platformCollection
+    }
+    
     
     func getAllPlatforms() async throws -> [Platform] {
         var platforms: [Platform] = []

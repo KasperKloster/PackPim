@@ -11,6 +11,12 @@ struct CreateIntegrationView: View {
     @ObservedObject var presenter: CreateIntegrationPresenter
     // State to track selected platform
     @State private var selectedPlatform: Platform? = nil
+    // States to get user inputs
+    @State private var integrationName: String = ""
+    @State private var apiKey: String = ""
+    // States to get messages
+    @State private var showAlert = false
+    @State private var alertMessage: String = ""
     
     var body: some View {
         
@@ -20,11 +26,11 @@ struct CreateIntegrationView: View {
             
             // Input fields and picker
             VStack(spacing: 20) {
-                TextField("Name", text: .constant(""))
+                TextField("Name", text: $integrationName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
-                TextField("APIKey", text: .constant(""))
+                TextField("APIKey", text: $apiKey)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
@@ -40,9 +46,14 @@ struct CreateIntegrationView: View {
                 .padding(.horizontal)
             }
             
-            // Create button
+            // Create / submit button
             Button(action: {
-                // Add action logic here
+                // When button has been clicked. Send this to the presenter
+                presenter.createIntegration(
+                    name: integrationName,
+                    apiKey: apiKey,
+                    platform: selectedPlatform)
+                
             }) {
                 Text("Create")
                     .padding(10)
@@ -52,19 +63,23 @@ struct CreateIntegrationView: View {
             Spacer()
         }
         .navigationTitle("Create new integration")
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Message"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
         .onAppear {
             Task{
                 do {
                     await presenter.loadPlatforms()
                 } 
             }
-            
         }
     }
 }
 
 #Preview {
+    let platformManager = PlatformManager.shared
+    let integrationManager = IntegrationManager.shared
     let presenter = CreateIntegrationPresenter()
-    presenter.interactor = CreateIntegrationInteractor()
+    presenter.interactor = CreateIntegrationInteractor(platformManager: platformManager, integrationManager: integrationManager)
     return CreateIntegrationView(presenter: presenter)
 }
