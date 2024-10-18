@@ -9,7 +9,6 @@ import Foundation
 
 struct Platform : Hashable, Decodable, Identifiable{
     let id : String
-//    let id = UUID()
     let name: String
 }
 

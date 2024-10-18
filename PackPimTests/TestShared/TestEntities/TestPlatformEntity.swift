@@ -10,8 +10,9 @@ import Testing
 @Suite("TestPlatformEntity") struct TestPlatformEntity {
 
     @Test("Sets platform name") func setName() {
+        let id = "UniqueIdIsAStringInFireStore"
         let name = "Shopify"
-        let platform = Platform(name: name)
+        let platform = Platform(id: id, name: name)
         #expect(platform.name == name)
     }
 
