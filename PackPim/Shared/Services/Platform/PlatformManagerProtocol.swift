@@ -9,4 +9,5 @@ import Foundation
 
 protocol PlatformManagerProtocol {
     func getAllPlatforms() async throws -> [Platform]
+    func getPlatformName(platformRef : String) async throws -> String
 }

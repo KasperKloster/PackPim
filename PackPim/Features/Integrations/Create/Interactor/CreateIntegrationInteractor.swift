@@ -23,13 +23,7 @@ class CreateIntegrationInteractor : CreateIntegrationInteractorProtocol {
     }
     
     // Prepare data to Insert into DB
-    func insertIntegration(name: String, apiKey: String, platform: Platform) {
-        // Prepare data. A dictionary where Key is String, and value can be anything
-        let integrationData: [String: Any] = [
-            "name": name,
-            "apiKey": apiKey,
-            "platformRef": "platforms/\(platform.id)"]
-        
+    func insertIntegration(integrationData : [String : Any]) {        
         // Inserts
         integrationManager.insertIntegration(integrationData: integrationData)
     }

@@ -9,4 +9,5 @@ import Foundation
 
 protocol IntegrationPresenterProtocol: AnyObject {
     func loadIntegrations() async throws
+    func setIntegrationDTO(for integrations : [Integration]) async throws -> [IntegrationDTO]
 }

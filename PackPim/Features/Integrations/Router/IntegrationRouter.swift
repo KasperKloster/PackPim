@@ -10,9 +10,10 @@ import SwiftUI
 class IntegrationRouter {
     static func createModule () -> some View {
         let integrationManager = IntegrationManager.shared
+        let platformManager = PlatformManager.shared
         
         let presenter = IntegrationPresenter()
-        let interactor = IntegrationInteractor(integrationManager: integrationManager)
+        let interactor = IntegrationInteractor(integrationManager: integrationManager, platformManager: platformManager)
         presenter.interactor = interactor
         let view = IntegrationView(presenter: presenter)
         return view;

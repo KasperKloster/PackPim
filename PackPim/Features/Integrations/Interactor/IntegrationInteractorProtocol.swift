@@ -7,4 +7,5 @@
 
 protocol IntegrationInteractorProtocol {    
     func fetchIntegrations() async throws -> [Integration]
+    func fetchPlatformName(platformRef : String) async throws -> String
 }

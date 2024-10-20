@@ -31,9 +31,16 @@ class CreateIntegrationPresenter : CreateIntegrationPresenterProtocol, Observabl
         guard let platform else {
             print("You need to select a platform.")
             return
-        }        
+        }
+        
+        // Prepare data. A dictionary where Key is String, and value can be anything
+        let integrationData: [String: Any] = [
+            "name": name,
+            "apiKey": apiKey,
+            "platformRef": "platforms/\(platform.id)"]
+        
         // Passed guard? Call the interactor, and insert integration
-        interactor?.insertIntegration(name: name, apiKey: apiKey, platform: platform)
+        interactor?.insertIntegration(integrationData: integrationData)
     }
     
 }

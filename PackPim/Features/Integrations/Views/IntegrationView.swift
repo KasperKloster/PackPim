@@ -19,7 +19,8 @@ struct IntegrationView: View {
             }
             else {
                 Table(presenter.integrations){
-                    TableColumn("Name", value: \.name)                    
+                    TableColumn("Name", value: \.name)
+                    TableColumn("Platform", value: \.platformName)                    
                 }
             }
         }
@@ -37,7 +38,8 @@ struct IntegrationView: View {
 
 #Preview {
     let integrationManager = IntegrationManager.shared
+    let platformManager = PlatformManager.shared
     let presenter = IntegrationPresenter()
-    presenter.interactor = IntegrationInteractor(integrationManager: integrationManager)
+    presenter.interactor = IntegrationInteractor(integrationManager: integrationManager, platformManager: platformManager)
     return IntegrationView(presenter: presenter)
 }

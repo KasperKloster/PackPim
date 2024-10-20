@@ -20,12 +20,10 @@ import FirebaseCore
 
 @main
 struct PackPimApp: App {
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
 //     Initialise Firebase
     init () {
         FirebaseApp.configure()
-//        FirebaseConfiguration.shared.setLoggerLevel(.debug)                
     }
     
     var body: some Scene {

@@ -9,6 +9,6 @@ import Foundation
 
 protocol CreateIntegrationInteractorProtocol: AnyObject {
     func fetchPlatforms() async throws -> [Platform]
-    func insertIntegration(name: String, apiKey: String, platform: Platform)
+    func insertIntegration(integrationData : [String : Any])
     
 }
