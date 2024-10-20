@@ -8,7 +8,14 @@
 import Foundation
 
 class IntegrationInteractor: IntegrationInteractorProtocol {
-    func fetchIntegrations() -> [Integration] {
-        return Integration.dummyData();
-    }        
+    private let integrationManager: IntegrationManagerProtocol
+    
+    // Constructor injection
+    init(integrationManager: IntegrationManagerProtocol) {
+        self.integrationManager = integrationManager
+    }
+    
+    func fetchIntegrations() async throws -> [Integration] {
+        try await integrationManager.getAllIntegrations();        
+    }
 }

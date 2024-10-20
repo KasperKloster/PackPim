@@ -27,6 +27,27 @@ final class IntegrationManager : IntegrationManagerProtocol{
             }
         }
     }
+    
+    func getAllIntegrations() async throws -> [Integration] {
+        var integrations : [Integration] = []
+        
+        do {
+            let querySnapshot = try await integrationCollection.getDocuments();
+            
+            for document in querySnapshot.documents {
+                // Decode the document fields into an Integration object, (excluding the 'id' - See Entity)
+                var integration = try document.data(as: Integration.self)
+                // Manually set ID
+                integration.id = document.documentID
+                // Append
+                integrations.append(integration)
+            }
+            
+        } catch {
+            print("Error getting documents: \(error)")
+        }
+        return integrations;
+    }
 
 }
 

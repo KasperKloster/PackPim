@@ -21,3 +21,9 @@ struct Integration  : Identifiable, Decodable {
         case apikey
     }
 }
+
+extension Integration {
+    func toDTO() -> IntegrationDTO {
+        return IntegrationDTO(id: id, name: name)
+    }
+}

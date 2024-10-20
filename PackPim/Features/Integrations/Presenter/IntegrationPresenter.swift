@@ -9,12 +9,17 @@ import Foundation
 
 class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
     var interactor : IntegrationInteractorProtocol?
+    @Published var integrations : [IntegrationDTO] = []
     
-    @Published var integrations : [Integration] = []
-    
-    func loadIntegrations() {
-        if let integrations = interactor?.fetchIntegrations() {
-            self.integrations = integrations
+    func loadIntegrations() async {
+        do {
+            let integrations = try await interactor?.fetchIntegrations() ?? []
+            // Update on main thread
+            DispatchQueue.main.async {
+                self.integrations = integrations.map{ $0.toDTO() }
+            }
+        } catch{
+            print("Could not fetch integrations \(error.localizedDescription)")
         }
     }    
 }

@@ -25,8 +25,7 @@ struct PackPimApp: App {
 //     Initialise Firebase
     init () {
         FirebaseApp.configure()
-//        FirebaseConfiguration.shared.setLoggerLevel(.debug)
-        print("Firebase connect")        
+//        FirebaseConfiguration.shared.setLoggerLevel(.debug)                
     }
     
     var body: some Scene {

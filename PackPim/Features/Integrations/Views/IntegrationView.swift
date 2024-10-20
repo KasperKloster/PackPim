@@ -18,22 +18,26 @@ struct IntegrationView: View {
                 Text("No Integrations..")
             }
             else {
-                List(presenter.integrations) { integration in
-                    Text(integration.name)
+                Table(presenter.integrations){
+                    TableColumn("Name", value: \.name)                    
                 }
             }
         }
         .navigationTitle("Integrations")
         .onAppear
         {
-            presenter.loadIntegrations()
+            Task{
+                do {
+                    await presenter.loadIntegrations()
+                }
+            }
         }
-        
     }
 }
 
 #Preview {
+    let integrationManager = IntegrationManager.shared
     let presenter = IntegrationPresenter()
-    presenter.interactor = IntegrationInteractor()
+    presenter.interactor = IntegrationInteractor(integrationManager: integrationManager)
     return IntegrationView(presenter: presenter)
 }

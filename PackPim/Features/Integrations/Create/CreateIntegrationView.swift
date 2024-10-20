@@ -14,9 +14,6 @@ struct CreateIntegrationView: View {
     // States to get user inputs
     @State private var integrationName: String = ""
     @State private var apiKey: String = ""
-    // States to get messages
-    @State private var showAlert = false
-    @State private var alertMessage: String = ""
     
     var body: some View {
         
@@ -63,9 +60,6 @@ struct CreateIntegrationView: View {
             Spacer()
         }
         .navigationTitle("Create new integration")
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Message"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-        }
         .onAppear {
             Task{
                 do {

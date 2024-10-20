@@ -8,5 +8,5 @@
 import Foundation
 
 protocol IntegrationPresenterProtocol: AnyObject {
-    func loadIntegrations()
+    func loadIntegrations() async throws
 }

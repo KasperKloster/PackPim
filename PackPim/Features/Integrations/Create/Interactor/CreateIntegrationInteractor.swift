@@ -28,8 +28,8 @@ class CreateIntegrationInteractor : CreateIntegrationInteractorProtocol {
         let integrationData: [String: Any] = [
             "name": name,
             "apiKey": apiKey,
-            "platformId": platform.id,            
-        ]
+            "platformRef": "platforms/\(platform.id)"]
+        
         // Inserts
         integrationManager.insertIntegration(integrationData: integrationData)
     }
