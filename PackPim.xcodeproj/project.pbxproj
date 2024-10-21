@@ -82,10 +82,10 @@
 		6E7653C12CADCBEE007A4611 = {
 			isa = PBXGroup;
 			children = (
+				6EEE7DFA2CBC4D230058665A /* Frameworks */,
 				6E7653CC2CADCBEE007A4611 /* PackPim */,
 				6E7653DE2CADCBF0007A4611 /* PackPimTests */,
 				6E7653E82CADCBF0007A4611 /* PackPimUITests */,
-				6EEE7DFA2CBC4D230058665A /* Frameworks */,
 				6E7653CB2CADCBEE007A4611 /* Products */,
 			);
 			sourceTree = "<group>";
