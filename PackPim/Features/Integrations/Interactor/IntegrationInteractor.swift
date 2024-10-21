@@ -25,5 +25,13 @@ class IntegrationInteractor: IntegrationInteractorProtocol {
         try await platformManager.getPlatformName(platformRef: platformRef);
     }
     
+    func getIntegration(integration : IntegrationDTO){
+        return;
+    }
+    
+    func deleteIntegration(integrationId: String) async throws {
+        try await integrationManager.deleteIntegration(integrationId: integrationId)
+    }
+    
     
 }

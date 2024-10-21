@@ -18,7 +18,8 @@ final class IntegrationManager : IntegrationManagerProtocol{
         self.integrationCollection = integrationCollection
     }
     
-    func insertIntegration(integrationData : [String: Any]){
+    func insertIntegration(integrationData : [String: Any])
+    {
         integrationCollection.addDocument(data: integrationData){ error in
             if let error = error {
                 print("Error adding integration to Firestore: \(error.localizedDescription)")
@@ -47,6 +48,11 @@ final class IntegrationManager : IntegrationManagerProtocol{
             print("Error getting documents: \(error)")
         }
         return integrations;
+    }
+    
+    func deleteIntegration(integrationId : String)  async throws{        
+        try await integrationCollection.document(integrationId).delete()
+        print("Integration deleted successfully")
     }
 
 }

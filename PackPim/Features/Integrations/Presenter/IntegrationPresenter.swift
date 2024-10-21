@@ -49,4 +49,28 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
         }
         return integrationDTOs
     }
+    
+    func readIntegrationDetails(integration: IntegrationDTO) {
+        print(integration.id!);
+    }
+    
+    func editIntegrationDetails(integration: IntegrationDTO) {
+        print(integration.id!);
+    }
+    
+    func deleteIntegrationDetails(integration: IntegrationDTO) async throws {
+        do {
+            try await interactor?.deleteIntegration(integrationId: integration.id!)
+            DispatchQueue.main.async {
+                // Removes from the UI list immediately
+                self.integrations.removeAll { $0.id == integration.id }
+            }
+        } catch {
+            print("Failed to delete integration: \(error.localizedDescription)")
+          
+        }
+        
+    }
+    
+    
 }
