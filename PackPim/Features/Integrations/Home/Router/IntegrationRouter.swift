@@ -7,19 +7,22 @@
 
 import SwiftUI
 
-class IntegrationRouter {
+class IntegrationRouter : IntegrationRouterProtocol{
     static func createModule () -> some View {
         let integrationManager = IntegrationManager.shared
         let platformManager = PlatformManager.shared
         
-        let presenter = IntegrationPresenter()
+        let integrationRouter = IntegrationRouter()
+        
+        let presenter = IntegrationPresenter(router: integrationRouter)
         let interactor = IntegrationInteractor(integrationManager: integrationManager, platformManager: platformManager)
         presenter.interactor = interactor
         let view = IntegrationView(presenter: presenter)
         return view;
     }
     
-    func navigateToCreateIntegration() -> some View {
-        return CreateIntegrationRouter.createModule();
+    func navigateToReadIntegration(for integration: IntegrationDTO) -> some View{
+        ReadIntegrationRouter.createModule(for: integration);
     }
+    
 }

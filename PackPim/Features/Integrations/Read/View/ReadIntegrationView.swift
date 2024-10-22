@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct ReadIntegration: View {
+struct ReadIntegrationView: View {
+    var integration: IntegrationDTO
+    
     var body: some View {
         VStack {
             HStack {
@@ -30,6 +32,6 @@ func actionBtn(){
     return;
 }
 
-#Preview {
-    ReadIntegration()
-}
+//#Preview {
+//    ReadIntegrationView()
+//}

@@ -10,7 +10,5 @@ import SwiftUI
 protocol IntegrationRouterProtocol {
     // Create module
     associatedtype V: View
-    static func createModule() -> V
-    // Navigation
-    
+    static func createModule() -> V    
 }

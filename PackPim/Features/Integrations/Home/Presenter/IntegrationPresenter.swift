@@ -6,15 +6,24 @@
 //
 
 import Foundation
+import SwiftUICore
 
 class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
-    var interactor : IntegrationInteractorProtocol?
     @Published var integrations : [IntegrationDTO] = []
+    // Controls navigation state
+    @Published var isNavigating : Bool = false
+    // Destination for NavigationLink
+    @Published var navigationDestination : AnyView?
+    var interactor : IntegrationInteractorProtocol?
+    private let router : IntegrationRouter?
+    init(router: IntegrationRouter) {
+        self.router = router
+    }
     
     func loadIntegrations() async {
         do {
             let integrations = try await interactor?.fetchIntegrations() ?? []
-            let integrationDTOs = try await setIntegrationDTO(for: integrations)
+            let integrationDTOs = try await mapIntegrationDTO(for: integrations)
             // Update on main thread
             DispatchQueue.main.async {
                 self.integrations = integrationDTOs
@@ -24,7 +33,7 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
         }
     }
     
-    func setIntegrationDTO(for integrations : [Integration]) async throws -> [IntegrationDTO]{
+    private func mapIntegrationDTO(for integrations : [Integration]) async throws -> [IntegrationDTO] {
         var integrationDTOs: [IntegrationDTO] = []
         
         for integration in integrations{
@@ -50,8 +59,13 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
         return integrationDTOs
     }
     
-    func readIntegrationDetails(integration: IntegrationDTO) {
-        print(integration.id!);
+    func didTapReadIntegrationDetails(integration: IntegrationDTO){
+        // Get the destination view from the router
+        let destinationView = router?.navigateToReadIntegration(for: integration)
+        // Set the view
+        navigationDestination = AnyView(destinationView)
+        // Activate navigation
+        isNavigating = true
     }
     
     func editIntegrationDetails(integration: IntegrationDTO) {
@@ -67,7 +81,7 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
             }
         } catch {
             print("Failed to delete integration: \(error.localizedDescription)")
-          
+            
         }
         
     }
