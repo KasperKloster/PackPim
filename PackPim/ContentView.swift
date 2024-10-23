@@ -14,21 +14,23 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List{
-                NavigationLink("Home", destination: HomeView())
+                Section("Home"){
+                    NavigationLink("Home", destination: HomeView())
+                }
                 
-                DisclosureGroup("Products", isExpanded: $isProductsExpanded){
+                Section("Products", isExpanded: $isProductsExpanded){
                     NavigationLink("Products", destination: ProductRouter.createModule())
                 }
-                DisclosureGroup("Integrations", isExpanded: $isIntegrationsExpanded){
+                
+                Section("Integrations", isExpanded: $isIntegrationsExpanded){
                     NavigationLink("Integrations", destination: IntegrationRouter.createModule())
                     NavigationLink("Add new integrattion", destination: CreateIntegrationRouter.createModule())
                 }
-            }            
+            }
         } detail: {
             Text("Select an option from the menu")
         }
-    }
-
+    }    
 }
 
 #Preview {
