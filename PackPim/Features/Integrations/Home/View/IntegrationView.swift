@@ -32,7 +32,7 @@ struct IntegrationView: View {
                                     Button("Edit") {}
                                     Button("See Details", action: {
                                         // Trigger details action for this integration
-                                        presenter.didTapReadIntegrationDetails(integration: integration)
+                                        presenter.didTapReadIntegrationDetails(integrationId: integration.id)
                                     })
                                     Divider()
                                     Button("Delete", role: .destructive) {

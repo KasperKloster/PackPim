@@ -8,8 +8,13 @@
 import SwiftUI
 
 class ReadIntegrationRouter : ReadIntegrationRouterProtocol {
-    static func createModule (for integration: IntegrationDTO) -> some View {
-        return ReadIntegrationView(integration: integration)
+    static func createModule (for integrationId: String) -> some View {
+        let interactor = ReadIntegrationInteractor()
+        let presenter = ReadIntegrationPresenter(integrationId: integrationId, interactor: interactor)
+        
+        let view = ReadIntegrationView(presenter: presenter, integrationId: integrationId)
+        
+        return view
     }
     
 

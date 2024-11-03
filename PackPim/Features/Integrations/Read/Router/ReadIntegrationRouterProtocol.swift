@@ -10,6 +10,6 @@ import SwiftUI
 protocol ReadIntegrationRouterProtocol {
     // Create module
     associatedtype V : View
-    static func createModule(for integration: IntegrationDTO) -> V
+    static func createModule(for integrationId: String) -> V
 }
 

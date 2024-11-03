@@ -7,6 +7,6 @@
 
 struct IntegrationMapper{
     static func toDTO(_ entity: Integration, platformName: String) -> IntegrationDTO {
-        return IntegrationDTO(id: entity.id, name: entity.name, platformName: platformName)
+        return IntegrationDTO(id: entity.id!, name: entity.name, platformName: platformName)
     }
 }

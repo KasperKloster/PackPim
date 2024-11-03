@@ -10,7 +10,7 @@ import Foundation
 protocol IntegrationPresenterProtocol: AnyObject {
     func loadIntegrations() async throws
   
-    func didTapReadIntegrationDetails(integration: IntegrationDTO)
+    func didTapReadIntegrationDetails(integrationId: String)
     func editIntegrationDetails(integration: IntegrationDTO)
     func deleteIntegrationDetails(integration: IntegrationDTO) async throws
 }

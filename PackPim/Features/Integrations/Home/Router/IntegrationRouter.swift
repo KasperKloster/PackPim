@@ -21,8 +21,8 @@ class IntegrationRouter : IntegrationRouterProtocol{
         return view;
     }
     
-    func navigateToReadIntegration(for integration: IntegrationDTO) -> some View{
-        ReadIntegrationRouter.createModule(for: integration);
+    func navigateToReadIntegration(for integrationId: String) -> some View{
+        ReadIntegrationRouter.createModule(for: integrationId);
     }
     
 }

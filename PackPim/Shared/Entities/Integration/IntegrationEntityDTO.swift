@@ -8,7 +8,7 @@
 import Foundation
 
 struct IntegrationDTO : Identifiable {
-    let id: String?
+    let id: String
     let name: String
     let platformName : String    
 }

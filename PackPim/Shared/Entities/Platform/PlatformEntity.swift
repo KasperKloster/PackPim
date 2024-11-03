@@ -11,6 +11,3 @@ struct Platform : Hashable, Decodable, Identifiable{
     let id : String
     let name: String
 }
-
-
-

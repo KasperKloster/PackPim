@@ -10,7 +10,7 @@ import FirebaseFirestore
 // A Singleton
 // Final class: Cannot be inherited
 final class PlatformManager : PlatformManagerProtocol {
-    // Static: Only avaiable wihin the class.
+    // Static: Only available wihin the class.
     // Let: is created once, and used thorugh the entire app - It's a singleton (There can only be one instance during app lifetime)
     // And instance of the class, so it can be accessed.
     static let shared = PlatformManager()        
