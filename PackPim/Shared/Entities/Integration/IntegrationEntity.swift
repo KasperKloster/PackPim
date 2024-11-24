@@ -12,7 +12,7 @@ struct Integration  : Identifiable, Decodable {
     // Id will get manually set
     var id : String?
     let name: String
-    let apikey : String?
+    let accessToken : String?
     let platformRef : String
     
     
@@ -20,15 +20,15 @@ struct Integration  : Identifiable, Decodable {
     // The CodingKeys enum only includes fields that exist in Firestore (name, apikey etc).
     private enum CodingKeys: String, CodingKey {
         case name
-        case apikey
-        case platformRef        
+        case accessToken
+        case platformRef
     }
     
     // Custom initializer with a default value of nil for apikey
-    init(id: String? = nil, name: String, apikey: String? = nil, platformRef: String) {
+    init(id: String? = nil, name: String, accessToken: String? = nil, platformRef: String) {
         self.id = id
         self.name = name
-        self.apikey = apikey
+        self.accessToken = accessToken
         self.platformRef = platformRef
     }
 }

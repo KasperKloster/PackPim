@@ -26,7 +26,7 @@ class CreateIntegrationPresenter : CreateIntegrationPresenterProtocol, Observabl
         }
     }
     
-    func createIntegration(name: String, apiKey: String, platform: Platform?) {
+    func createIntegration(name: String, accessToken: String, platform: Platform?) {
         // Make sure platform has been selected. Stop execution of code if not
         guard let platform else {
             print("You need to select a platform.")
@@ -36,7 +36,7 @@ class CreateIntegrationPresenter : CreateIntegrationPresenterProtocol, Observabl
         // Prepare data. A dictionary where Key is String, and value can be anything
         let integrationData: [String: Any] = [
             "name": name,
-            "apiKey": apiKey,
+            "accessToken": accessToken,
             "platformRef": "platforms/\(platform.id)"]
         
         // Passed guard? Call the interactor, and insert integration

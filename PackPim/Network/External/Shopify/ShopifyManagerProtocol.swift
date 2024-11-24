@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ShopifyManagerProtocol {
-    func getProducts(with ApiKey : String) async throws
+    func getProducts() async throws -> [Product]
 }

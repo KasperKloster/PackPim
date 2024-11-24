@@ -13,7 +13,7 @@ struct CreateIntegrationView: View {
     @State private var selectedPlatform: Platform? = nil
     // States to get user inputs
     @State private var integrationName: String = ""
-    @State private var apiKey: String = ""
+    @State private var accessToken: String = ""
     
     var body: some View {
         
@@ -27,7 +27,7 @@ struct CreateIntegrationView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
-                TextField("APIKey", text: $apiKey)
+                TextField("Admin API access token", text: $accessToken)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
@@ -48,7 +48,7 @@ struct CreateIntegrationView: View {
                 // When button has been clicked. Send this to the presenter
                 presenter.createIntegration(
                     name: integrationName,
-                    apiKey: apiKey,
+                    accessToken: accessToken,
                     platform: selectedPlatform)
                 
             }) {

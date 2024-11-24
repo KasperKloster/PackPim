@@ -9,5 +9,5 @@ import Foundation
 
 protocol CreateIntegrationPresenterProtocol : AnyObject {
     func loadPlatforms() async throws
-    func createIntegration(name: String, apiKey: String, platform: Platform?)    
+    func createIntegration(name: String, accessToken: String, platform: Platform?)    
 }

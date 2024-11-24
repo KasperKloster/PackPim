@@ -12,5 +12,6 @@ protocol IntegrationManagerProtocol {
     func getAllIntegrations() async throws -> [Integration]
     func getIntegrations(withId integrationId: String) async throws -> IntegrationDTO
     func deleteIntegration(integrationId : String) async throws
-    func getIntegrationAPIKey(withId integrationId: String) async throws -> String
+    func getIntegrationAccessToken(withId integrationId: String) async throws -> String
+    func createProductCollection(integrationId : String, products : [Product]) async throws
 }

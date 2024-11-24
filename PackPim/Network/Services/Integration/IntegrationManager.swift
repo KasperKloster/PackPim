@@ -79,22 +79,29 @@ final class IntegrationManager : IntegrationManagerProtocol{
         print("Integration deleted successfully")
     }
     
-    func getIntegrationAPIKey(withId integrationId : String) async throws -> String {
+    func getIntegrationAccessToken(withId integrationId : String) async throws -> String {
         let document = try await integrationCollection.document(integrationId).getDocument();
         guard let data = document.data() else {
             print("No data found in document.")
             throw NSError(domain: "IntegrationError", code: 404, userInfo: [NSLocalizedDescriptionKey: "Integration not found"])
         }
 
-        guard let apiKey = data["apiKey"] as? String else {
-            print("API Key not found")
+        guard let apiKey = data["accessToken"] as? String else {
+            print("Column: AccessToken not found")
             throw NSError(domain: "IntegrationError", code: 404, userInfo: [NSLocalizedDescriptionKey: "Integration not found"])
         }
                 
         return apiKey;
     }
     
-    
-    
+    func createProductCollection(integrationId : String, products : [Product]) async throws{
+        // Products document
+        do {
+            for product in products {
+                try integrationCollection.document(integrationId).collection("products").document(product.sku).setData(from: product)
+            }
+        } catch {
+            print("Error with adding products to integration")
+        }
+    }
 }
-

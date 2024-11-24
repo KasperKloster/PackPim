@@ -62,10 +62,14 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
     func didTapReadIntegrationDetails(integrationId: String){
         // Get the destination view from the router
         let destinationView = router?.navigateToReadIntegration(for: integrationId)
-        // Set the view
-        navigationDestination = AnyView(destinationView)
-        // Activate navigation
-        isNavigating = true
+        
+        // State updates is on the main thread
+        DispatchQueue.main.async {
+            // Set the view
+            self.navigationDestination = AnyView(destinationView)
+            // Activate navigation
+            self.isNavigating = true
+        }
     }
     
     func editIntegrationDetails(integration: IntegrationDTO) {
@@ -75,7 +79,8 @@ class IntegrationPresenter : IntegrationPresenterProtocol, ObservableObject {
     func deleteIntegrationDetails(integration: IntegrationDTO) async throws {
         do {
             try await interactor?.deleteIntegration(integrationId: integration.id)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async
+            {
                 // Removes from the UI list immediately
                 self.integrations.removeAll { $0.id == integration.id }
             }

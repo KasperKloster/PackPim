@@ -32,7 +32,7 @@ class ReadIntegrationPresenter: ObservableObject, ReadIntegrationPresenterProtoc
         // Use optional binding to safely unwrap integrationDetails
         guard let integrationDetails = integrationDetails else {
             print("Integration details not loaded yet.")
-            return
+            return;
         }
                     
         // Sync depening on platform
@@ -40,7 +40,7 @@ class ReadIntegrationPresenter: ObservableObject, ReadIntegrationPresenterProtoc
         
         if platformName.lowercased() == "shopify"
         {
-            try await interactor.syncShopifyProducts(withId: integrationDetails.id);
+            try await interactor.syncShopifyProducts(withId: integrationDetails.id);                        
         }
                         
     }
